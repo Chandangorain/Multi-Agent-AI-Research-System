@@ -67,7 +67,7 @@ def run_research_pipeline(topic : str) -> dict:
     return state  #return all results of critic report, final report, search result and scraped content  
 
 
-
+#explain this : name ==main because it is used to check whether the script is being run directly or being imported as a module. If the script is run directly, the code block under if __name__ == "__main__": will execute. In this case, it prompts the user to enter a research topic and then runs the research pipeline with that topic.
 if __name__ == "__main__":
     topic = input("\n Enter a research topic : ")
     run_research_pipeline(topic)
