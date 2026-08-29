@@ -7,8 +7,33 @@ from dotenv import load_dotenv
 from rich import print
 load_dotenv()
 
+#User asks a question
+ #       ↓
+  # web_search()
+   #     ↓
+   #Tavily searches web
+    #    ↓
+#Title + URL + Snippet
+ #       ↓
+#If deeper information is needed
+ #       ↓
+  # scrape_url(URL)
+   #     ↓
+#Download webpage HTML
+ #       ↓
+#BeautifulSoup cleans HTML
+ #       ↓
+#Extract useful text
+ #       ↓
+#Return up to 3000 characters
+
 tavily =  TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
 
+# =========================================================
+# TOOL 1: WEB SEARCH
+# User Query → Tavily Search → Get 5 Results
+# → Extract Title + URL + Short Snippet → Return Results
+# =========================================================
 @tool
 def web_search(query : str) -> str:
     """Search the web for recent and reliable information on a topic . Returns Titles , URLs and snippets."""
@@ -25,6 +50,14 @@ def web_search(query : str) -> str:
     return "\n----\n".join(out)
 #print(web_search.invoke("what is the recent news of nepal?"))
 
+
+# =========================================================
+# TOOL 2: URL SCRAPER
+# Flow:
+# URL → Send Request → Get HTML
+# → BeautifulSoup → Remove Unwanted Tags
+# → Extract Text → Return First 3000 Characters
+# =========================================================
 @tool
 def scrape_url(url: str) -> str:
     """Scrape and return clean text content from a given URL for deeper reading."""
