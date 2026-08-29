@@ -64,7 +64,7 @@ def run_research_pipeline(topic : str) -> dict:
 
     print("\n critic report \n", state['feedback'])
 
-    return state
+    return state  #return all results of critic report, final report, search result and scraped content  
 
 
 
