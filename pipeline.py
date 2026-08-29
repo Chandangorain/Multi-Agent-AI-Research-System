@@ -40,7 +40,7 @@ def run_research_pipeline(topic : str) -> dict:
     print("step 3 - Writer is drafting the report ...")
     print("="*50)
 
-    research_combined = (
+    research_combined = (           #combining the search result and scraped content to pass to the writer chain
         f"SEARCH RESULTS : \n {state['search_results']} \n\n"
         f"DETAILED SCRAPED CONTENT : \n {state['scraped_content']}"
     )
@@ -53,5 +53,26 @@ def run_research_pipeline(topic : str) -> dict:
     print("\n Final Report\n",state['report'])
 
 
+     #critic report 
+    print("\n"+" ="*50)
+    print("step 4 - critic is reviewing the report ")
+    print("="*50)
+
+    state["feedback"] = critic_chain.invoke({
+        "report":state['report']
+    })
+
+    print("\n critic report \n", state['feedback'])
+
+    return state
+
+
+
+if __name__ == "__main__":
+    topic = input("\n Enter a research topic : ")
+    run_research_pipeline(topic)
+
+
     
     
+ 
