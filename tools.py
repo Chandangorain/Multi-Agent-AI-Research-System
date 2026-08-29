@@ -62,12 +62,14 @@ def web_search(query : str) -> str:
 def scrape_url(url: str) -> str:
     """Scrape and return clean text content from a given URL for deeper reading."""
     try:
-        resp = requests.get(url, timeout=8, headers={"User-Agent": "Mozilla/5.0"})
+        resp = requests.get(url, timeout=8, headers={"User-Agent": "Mozilla/5.0"})  #-- we are creating  fake user of Mozilla browser to avoid blocking by the website and user request and saved in resp variable
         soup = BeautifulSoup(resp.text, "html.parser")
         for tag in soup(["script", "style", "nav", "footer"]):
             tag.decompose()
         return soup.get_text(separator=" ", strip=True)[:3000]
     except Exception as e:
-        return f"Could not scrape URL: {str(e)}"
+        return f"Could not scrape URL: {str(e)}"  
+
+print(scrape_url.invoke("https://www.bbc.com/news/live/cr0qxd1y219kt"))
 
 
