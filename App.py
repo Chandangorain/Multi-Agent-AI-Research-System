@@ -2,7 +2,7 @@ import streamlit as st
 from pipeline import run_research_pipeline
 
 st.set_page_config(page_title="Multi-Agent Research System", page_icon="🔎", layout="wide")
-
+ 
 st.title("🔎 Multi-Agent Research System")
 st.caption("Search Agent → Reader Agent → Writer Chain → Critic Chain")
 
